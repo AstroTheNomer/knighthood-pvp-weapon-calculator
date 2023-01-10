@@ -1,0 +1,33 @@
+:root {
+  --common: #9A9A9A;
+  --rare: #00AD6D;
+  --epic: #397DE3;
+  --legendary: #A91BE6;
+  --unique: #F6B802;
+  --mythic: #23DEFF;
+}
+
+.border-common {
+  border-color: var(--common);
+}
+.border-rare {
+  border-color: var(--rare);
+}
+.border-epic {
+  border-color: var(--epic);
+}
+.border-legendary {
+  border-color: var(--legendary);
+}
+.border-unique {
+  border-color: var(--unique);
+}
+.border-mythic {
+  border-color: var(--mythic);
+}
+
+
+label > img {
+  height: 1.5em;
+  vertical-align: middle;
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <title>Weapon Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"
+    defer></script>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous" defer></script>
+  <script src="./weapon.js" defer></script>
+</head>
+
+<body>
+  <div class="container py-5">
+    <h1>Weapon Calculator</h1>
+    <p class="lead">All calculation based on highest damage possible considering optimal matching charms.
+      <br />
+      Disclaimer: fortification calculations might be off, please check output and let me know
+    </p>
+
+    <div class="row py-3">
+      <div class="col-12">
+        <h4>Weapon Information</h4>
+      </div>
+      <div class="col">
+        <label class="form-label">Rarity: </label>
+        <select class="form-select" id="weapon-rarity">
+          <option value="Mythic">Mythic</option>
+          <option value="Unique">Unique</option>
+          <option value="Legendary">Legendary</option>
+          <option value="Epic">Epic</option>
+          <option value="Rare">Rare</option>
+        </select>
+      </div>
+      <div class="col">
+
+        <label class="form-label">Level: </label>
+        <input type="number" min="1" max="60" class="form-control" id="weapon-level" />
+
+      </div>
+
+      <div class="col">
+        <label for="" class="form-label">Gauntlet bonus: </label>
+        <input type="number" min="0" max="36" class="form-control" id="gauntlet-bonus" />
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col-12">
+        <h4>Crit Charms</h4>
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="common-crit" class="form-label">Common: </label>
+        <input class="form-control border-common" type="number" min="0" max="25" id="common-crit" />
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="rare-crit" class="form-label">Rare: </label>
+        <input class="form-control border-rare" type="number" min="0" max="25" id="rare-crit" />
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="epic-crit" class="form-label">Epic: </label>
+        <input class="form-control border-epic" type="number" min="0" max="25" id="epic-crit" />
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="legendary-crit" class="form-label">Legendary: </label>
+        <input class="form-control border-legendary" type="number" min="0" max="25" id="legendary-crit" />
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="unique-crit" class="form-label">Unique: </label>
+        <input class="form-control border-unique" type="number" min="0" max="25" id="unique-crit" />
+      </div>
+    </div>
+
+
+    <div class="row py-3">
+      <div class="col-12">
+        <h4>Damage Charms (if inflicted status)</h4>
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="common-status" class="form-label">Common: </label>
+        <input class="form-control border-common" type="number" min="0" max="25" id="common-status" />
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="rare-status" class="form-label">Rare: </label>
+        <input class="form-control border-rare" type="number" min="0" max="25" id="rare-status" />
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="epic-status" class="form-label">Epic: </label>
+        <input class="form-control border-epic" type="number" min="0" max="25" id="epic-status" />
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="legendary-status" class="form-label">Legendary: </label>
+        <input class="form-control border-legendary" type="number" min="0" max="25" id="legendary-status" />
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="unique-status" class="form-label">Unique: </label>
+        <input class="form-control border-unique" type="number" min="0" max="25" id="unique-status" />
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col-12">
+        <h4>Buffs and Debuffs</h4>
+      </div>
+      <div class="col">
+        <label for="attacker-bonus">Attacker: </label>
+        <select id="attacker-bonus" class="form-select">
+          <option value="0.35">Attacker has fury</option>
+          <option value="0" selected>No bonus</option>
+          <option value="-0.35">Attacker has weaken</option>
+        </select>
+      </div>
+
+      <div class="col">
+        <label for="defender-bonus">Defender: </label>
+        <select id="defender-bonus" class="form-select">
+          <option value="0.35">Defender has expose</option>
+          <option value="0" selected>No bonus</option>
+          <option value="-0.35">Defender has protect</option>
+        </select>
+      </div>
+
+      <div class="col">
+        <label for="fortification">Fortification level: </label>
+        <input type="number" id="fortification" min="0" class="form-control" />
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col">
+        <textarea readonly rows="3" class="form-control border-primary form-control-lg" id="result"></textarea>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary btn-lg w-100" onclick="calculateTotalDmg()">Calculate</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
