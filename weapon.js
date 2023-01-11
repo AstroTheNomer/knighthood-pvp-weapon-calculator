@@ -134,7 +134,7 @@ function calculateTotalDmg() {
     if (chainType === "ult") chainBonus = ULT_CHAIN_BONUS;
 
     const result = baseDmg * (1 + getGauntletBonus() + chainBonus) * getStrongVsBonus(chainType) * getFortificationBonus();
-    const critResult = result * getStrongVsBonus(chainType);
+    const critResult = result * getCritBonus(chainType);
 
     output.push(`${chainType}:\t ${Math.floor(result)} (crit: ${Math.floor(critResult)})`);
   }
