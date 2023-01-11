@@ -31,7 +31,7 @@
         <h4>Weapon Information</h4>
       </div>
       <div class="col">
-        <label class="form-label">Rarity: </label>
+        <label for="weapon-rarity" class="form-label">Rarity: </label>
         <select class="form-select" id="weapon-rarity">
           <option value="Mythic">Mythic</option>
           <option value="Unique">Unique</option>
@@ -42,14 +42,18 @@
       </div>
       <div class="col">
 
-        <label class="form-label">Level: </label>
-        <input type="number" min="1" max="60" class="form-control" id="weapon-level" />
+        <label for="weapon-level" class="form-label">Level: </label>
+        <input type="number" min="1" max="60" class="form-control" id="weapon-level" value="60" />
 
       </div>
 
       <div class="col">
-        <label for="" class="form-label">Gauntlet bonus: </label>
-        <input type="number" min="0" max="36" class="form-control" id="gauntlet-bonus" />
+        <label for="gauntlet-bonus" class="form-label">Gauntlet bonus: </label>
+        <select class="form-select" id="gauntlet-bonus">
+          <option value="36">Has bonus</option>
+          <option value="0" selected>No bonus</option>
+          <option value="9">Knight's Gauntlet</option>
+        </select>
       </div>
     </div>
 
@@ -59,23 +63,23 @@
       </div>
       <div class="col-6 col-sm-4 col-md">
         <label for="common-crit" class="form-label">Common: </label>
-        <input class="form-control border-common" type="number" min="0" max="25" id="common-crit" />
+        <input class="form-control border-common" type="number" min="0" max="5" id="common-crit" />
       </div>
       <div class="col-6 col-sm-4 col-md">
         <label for="rare-crit" class="form-label">Rare: </label>
-        <input class="form-control border-rare" type="number" min="0" max="25" id="rare-crit" />
+        <input class="form-control border-rare" type="number" min="0" max="5" id="rare-crit" />
       </div>
       <div class="col-6 col-sm-4 col-md">
         <label for="epic-crit" class="form-label">Epic: </label>
-        <input class="form-control border-epic" type="number" min="0" max="25" id="epic-crit" />
+        <input class="form-control border-epic" type="number" min="0" max="5" id="epic-crit" />
       </div>
       <div class="col-6 col-sm-4 col-md">
         <label for="legendary-crit" class="form-label">Legendary: </label>
-        <input class="form-control border-legendary" type="number" min="0" max="25" id="legendary-crit" />
+        <input class="form-control border-legendary" type="number" min="0" max="5" id="legendary-crit" />
       </div>
       <div class="col-6 col-sm-4 col-md">
         <label for="unique-crit" class="form-label">Unique: </label>
-        <input class="form-control border-unique" type="number" min="0" max="25" id="unique-crit" />
+        <input class="form-control border-unique" type="number" min="0" max="5" id="unique-crit" />
       </div>
     </div>
 
@@ -86,23 +90,23 @@
       </div>
       <div class="col-6 col-sm-4 col-md">
         <label for="common-status" class="form-label">Common: </label>
-        <input class="form-control border-common" type="number" min="0" max="25" id="common-status" />
+        <input class="form-control border-common" type="number" min="0" max="5" id="common-status" />
       </div>
       <div class="col-6 col-sm-4 col-md">
         <label for="rare-status" class="form-label">Rare: </label>
-        <input class="form-control border-rare" type="number" min="0" max="25" id="rare-status" />
+        <input class="form-control border-rare" type="number" min="0" max="5" id="rare-status" />
       </div>
       <div class="col-6 col-sm-4 col-md">
         <label for="epic-status" class="form-label">Epic: </label>
-        <input class="form-control border-epic" type="number" min="0" max="25" id="epic-status" />
+        <input class="form-control border-epic" type="number" min="0" max="5" id="epic-status" />
       </div>
       <div class="col-6 col-sm-4 col-md">
         <label for="legendary-status" class="form-label">Legendary: </label>
-        <input class="form-control border-legendary" type="number" min="0" max="25" id="legendary-status" />
+        <input class="form-control border-legendary" type="number" min="0" max="5" id="legendary-status" />
       </div>
       <div class="col-6 col-sm-4 col-md">
         <label for="unique-status" class="form-label">Unique: </label>
-        <input class="form-control border-unique" type="number" min="0" max="25" id="unique-status" />
+        <input class="form-control border-unique" type="number" min="0" max="5" id="unique-status" />
       </div>
     </div>
 
@@ -129,7 +133,7 @@
       </div>
 
       <div class="col">
-        <label for="fortification">Fortification level: </label>
+        <label for="fortification" class="form-label">Fortification level: </label>
         <input type="number" id="fortification" min="0" class="form-control" />
       </div>
     </div>

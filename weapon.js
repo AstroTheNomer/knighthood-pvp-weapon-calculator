@@ -50,7 +50,7 @@ function getTotalDamageCharms(chainType) {
 }
 
 function getTotalCritCharms(chainType) {
-  let critBonus = 1;
+  let critBonus = 0;
   if (chainType === "chain") critBonus = 20;
   if (chainType === "ult") critBonus = 30;
 
