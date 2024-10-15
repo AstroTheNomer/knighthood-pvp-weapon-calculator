@@ -24,6 +24,11 @@ const weapons = {
     dmg: 1576,
     difference: 9
   },
+
+  Punch: {
+    dmg: 9,
+    difference: 3
+  },
 }
 
 function getGauntletBonus(totalNodes) {
@@ -54,17 +59,18 @@ function getTotalCritCharms(chainType) {
   if (chainType === "chain") critBonus = 20;
   if (chainType === "ult") critBonus = 30;
 
-  const common = +$("#common-crit").val();
-  const rare = +$("#rare-crit").val();
-  const epic = +$("#epic-crit").val();
-  const legendary = +$("#legendary-crit").val();
-  const unique = +$("#unique-crit").val();
+  const common = +$("#common-crit-" + chainType).val();
+  const rare = +$("#rare-crit-" + chainType).val();
+  const epic = +$("#epic-crit-" + chainType).val();
+  const legendary = +$("#legendary-crit-" + chainType).val();
+  const unique = +$("#unique-crit-" + chainType).val();
 
   const totalCharms = +((common * 1 * critBonus + rare * 2 * critBonus + epic * 3 * critBonus + legendary * 4 * critBonus + unique * 5 * critBonus) / 100).toFixed(2);
   return totalCharms;
 }
 
 function getCritBonus(chainType) {
+  if (chainType === "base") return 1.5;
   return 1.5 + getTotalCritCharms(chainType);
 }
 
@@ -73,43 +79,21 @@ function getBaseDmg(rarity, level) {
   let baseDmg = weapons[rarity].dmg;
 
   const startLevel = rarity === "Mythic" ? 41 : 1;
+
   for (let i = startLevel + 1; i <= level; i++) {
     let multiplier;
+    let factor;
 
-    switch (true) {
-
-      case i <= 10:
-        multiplier = 1;
-        break;
-
-      case i <= 20:
-        multiplier = 2;
-        break;
-
-      case i <= 30:
-        multiplier = 4;
-        break;
-
-      case i <= 40:
-        multiplier = 8;
-        break;
-
-      case i <= 45:
-        multiplier = 16;
-        break;
-
-      case i <= 50:
-        multiplier = 32;
-        break;
-
-      case i <= 55:
-        multiplier = 64;
-        break;
-
-      case i <= 60:
-        multiplier = 128;
-        break;
+    if (i <= 0) {
+      return 0
     }
+    else if (i <= 40) {
+      factor = Math.floor((i - 1) / 10)
+    }
+    else {
+      factor = Math.floor((i - 41) / 5) + 4
+    }
+    multiplier = 2 ** factor
     baseDmg += (difference * multiplier);
   }
   return (baseDmg); // round
@@ -117,7 +101,7 @@ function getBaseDmg(rarity, level) {
 
 function getFortificationBonus() {
   const fortificationLevel = +$("#fortification").val();
-  return fortificationLevel * FORTIFICATION_BONUS + 1;
+  return fortificationLevel * FORTIFICATION_BONUS;
 }
 
 // console.log(getBaseDmg("Mythic", 60));
@@ -125,15 +109,23 @@ function getFortificationBonus() {
 
 function calculateTotalDmg() {
   const baseDmg = getBaseDmg($("#weapon-rarity").val(), $("#weapon-level").val());
+  const basePunch = getBaseDmg("Punch", $("#knight-level").val());
+
+  const status_bonus = +$("#attacker-bonus").val() + +$("#defender-bonus").val() + 1 + 0.5;
 
   let output = [];
+
+  const punch = basePunch * (1 + 2.2 + getFortificationBonus()) * status_bonus;
+  const crit_punch = punch * getCritBonus("base");
+
+  output.push(`punch (vs armor):\t ${Math.floor(punch)} (crit: ${Math.floor(crit_punch)})`);
 
   for (chainType of ["base", "chain", "ult"]) {
     let chainBonus = 0;
     if (chainType === "chain") chainBonus = CHAIN_BONUS;
     if (chainType === "ult") chainBonus = ULT_CHAIN_BONUS;
 
-    const result = baseDmg * (1 + getGauntletBonus() + chainBonus) * getStrongVsBonus(chainType) * getFortificationBonus();
+    const result = baseDmg * (1 + getFortificationBonus() + getGauntletBonus() + chainBonus) * getStrongVsBonus(chainType);
     const critResult = result * getCritBonus(chainType);
 
     output.push(`${chainType}:\t ${Math.floor(result)} (crit: ${Math.floor(critResult)})`);

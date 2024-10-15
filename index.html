@@ -43,43 +43,98 @@
       <div class="col">
 
         <label for="weapon-level" class="form-label">Level: </label>
-        <input type="number" min="1" max="60" class="form-control" id="weapon-level" value="60" />
+        <input type="number" min="1" max="70" class="form-control" id="weapon-level" value="70" />
 
+      </div>
+      <div class="col">
+      
+        <label for="knight-level" class="form-label">Knight Level: </label>
+        <input type="number" min="1" max="70" class="form-control" id="knight-level" value="70" />
+      
       </div>
 
       <div class="col">
         <label for="gauntlet-bonus" class="form-label">Gauntlet bonus: </label>
-        <select class="form-select" id="gauntlet-bonus">
-          <option value="36">Has bonus</option>
+        <div class="col input-group input-group-col">
+          <input class="form-control" type="number" id="gauntlet-bonus" min="0" max="36" value="36"
+            step="3" />
+          <span class="input-group-text">%</span>
+        </div>
+      </div>
+      <div class="col">
+        <label for="attacker-bonus" class="form-label">Attacker: </label>
+        <select id="attacker-bonus" class="form-select">
+          <option value="0.35">Attacker has fury</option>
           <option value="0" selected>No bonus</option>
-          <option value="9">Knight's Gauntlet</option>
+          <option value="-0.35">Attacker has weaken</option>
         </select>
+      </div>
+    
+      <div class="col">
+        <label for="defender-bonus" class="form-label">Defender: </label>
+        <select id="defender-bonus" class="form-select">
+          <option value="0.35">Defender has expose</option>
+          <option value="0" selected>No bonus</option>
+          <option value="-0.35">Defender has protect</option>
+        </select>
+      </div>
+    
+      <div class="col">
+        <label for="fortification" class="form-label">Fortification level: </label>
+        <input type="number" id="fortification" min="0" class="form-control" />
+      </div>
+    </div>
+
+
+    <div class="row py-3">
+      <div class="col-12">
+        <h4>Crit Chain Charms</h4>
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="common-crit-chain" class="form-label">Common: </label>
+        <input class="form-control border-common" type="number" min="0" max="5" id="common-crit-chain" />
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="rare-crit-chain" class="form-label">Rare: </label>
+        <input class="form-control border-rare" type="number" min="0" max="5" id="rare-crit-chain" />
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="epic-crit-chain" class="form-label">Epic: </label>
+        <input class="form-control border-epic" type="number" min="0" max="5" id="epic-crit-chain" />
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="legendary-crit-chain" class="form-label">Legendary: </label>
+        <input class="form-control border-legendary" type="number" min="0" max="5" id="legendary-crit-chain" />
+      </div>
+      <div class="col-6 col-sm-4 col-md">
+        <label for="unique-crit-chain" class="form-label">Unique: </label>
+        <input class="form-control border-unique" type="number" min="0" max="5" id="unique-crit-chain" />
       </div>
     </div>
 
     <div class="row py-3">
       <div class="col-12">
-        <h4>Crit Charms</h4>
+        <h4>Crit Ult Charms</h4>
       </div>
       <div class="col-6 col-sm-4 col-md">
-        <label for="common-crit" class="form-label">Common: </label>
-        <input class="form-control border-common" type="number" min="0" max="5" id="common-crit" />
+        <label for="common-crit-ult" class="form-label">Common: </label>
+        <input class="form-control border-common" type="number" min="0" max="5" id="common-crit-ult" />
       </div>
       <div class="col-6 col-sm-4 col-md">
-        <label for="rare-crit" class="form-label">Rare: </label>
-        <input class="form-control border-rare" type="number" min="0" max="5" id="rare-crit" />
+        <label for="rare-crit-ult" class="form-label">Rare: </label>
+        <input class="form-control border-rare" type="number" min="0" max="5" id="rare-crit-ult" />
       </div>
       <div class="col-6 col-sm-4 col-md">
-        <label for="epic-crit" class="form-label">Epic: </label>
-        <input class="form-control border-epic" type="number" min="0" max="5" id="epic-crit" />
+        <label for="epic-crit-ult" class="form-label">Epic: </label>
+        <input class="form-control border-epic" type="number" min="0" max="5" id="epic-crit-ult" />
       </div>
       <div class="col-6 col-sm-4 col-md">
-        <label for="legendary-crit" class="form-label">Legendary: </label>
-        <input class="form-control border-legendary" type="number" min="0" max="5" id="legendary-crit" />
+        <label for="legendary-crit-ult" class="form-label">Legendary: </label>
+        <input class="form-control border-legendary" type="number" min="0" max="5" id="legendary-crit-ult" />
       </div>
       <div class="col-6 col-sm-4 col-md">
-        <label for="unique-crit" class="form-label">Unique: </label>
-        <input class="form-control border-unique" type="number" min="0" max="5" id="unique-crit" />
+        <label for="unique-crit-ult" class="form-label">Unique: </label>
+        <input class="form-control border-unique" type="number" min="0" max="5" id="unique-crit-ult" />
       </div>
     </div>
 
@@ -111,36 +166,8 @@
     </div>
 
     <div class="row py-3">
-      <div class="col-12">
-        <h4>Buffs and Debuffs</h4>
-      </div>
       <div class="col">
-        <label for="attacker-bonus">Attacker: </label>
-        <select id="attacker-bonus" class="form-select">
-          <option value="0.35">Attacker has fury</option>
-          <option value="0" selected>No bonus</option>
-          <option value="-0.35">Attacker has weaken</option>
-        </select>
-      </div>
-
-      <div class="col">
-        <label for="defender-bonus">Defender: </label>
-        <select id="defender-bonus" class="form-select">
-          <option value="0.35">Defender has expose</option>
-          <option value="0" selected>No bonus</option>
-          <option value="-0.35">Defender has protect</option>
-        </select>
-      </div>
-
-      <div class="col">
-        <label for="fortification" class="form-label">Fortification level: </label>
-        <input type="number" id="fortification" min="0" class="form-control" />
-      </div>
-    </div>
-
-    <div class="row py-3">
-      <div class="col">
-        <textarea readonly rows="3" class="form-control border-primary form-control-lg" id="result"></textarea>
+        <textarea readonly rows="4" class="form-control border-primary form-control-lg" id="result"></textarea>
       </div>
       <div class="col">
         <button class="btn btn-primary btn-lg w-100" onclick="calculateTotalDmg()">Calculate</button>
